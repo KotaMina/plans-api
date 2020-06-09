@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.plans.apps.domain.mapper.MenuMapper">
+
+	<!-- メニュー情報を取得する。 -->
+	<select id="search" resultType="jp.co.plans.apps.domain.model.Menu">
+		SELECT
+			m.menu_id menuId,
+			m.name name,
+			m.path path
+		FROM
+			menu m
+		INNER JOIN
+			authority_menu auth
+			ON
+				m.menu_id = auth.menu_id
+		WHERE
+		<choose>
+			<when test="userId != null and userId != ''">
+			auth.authority = (SELECT authority FROM account WHERE user_id = #{userId})
+			</when>
+			<otherwise>
+			auth.authority = '000'
+			</otherwise>
+		</choose>
+			AND available_flg = 0;
+	</select>
+
+	<!-- メニュー情報を登録する。 -->
+	<insert id="insert">
+	 	INSERT INTO menu
+		VALUES (
+			#{menuId},
+			#{name},
+			#{path},
+			'0',
+			'SERVER',
+			now(),
+			'SERVER',
+			now()
+			);
+	</insert>
+</mapper>

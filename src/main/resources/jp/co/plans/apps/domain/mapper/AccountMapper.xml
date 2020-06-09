@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.plans.apps.domain.mapper.AccountMapper">
+	<!-- アカウント情報を取得する。 -->
+	<select id="login" resultType="Integer">
+		SELECT
+			count(*)
+		FROM
+			account
+		<where>
+			user_id = #{userId}
+			AND password = #{password}
+			AND white_flg = 0
+			AND failed_count <![CDATA[ < ]]> 50
+		</where>
+	</select>
+
+	<!-- ログイン失敗の回数をカウントアップする。 -->
+	<update id="countUpLoginFailed">
+		UPDATE account
+		SET
+			failed_count = failed_count + 1
+		WHERE
+			user_id = #{userId}
+			AND failed_count <![CDATA[ < ]]> 100
+	</update>
+
+	<!-- ログイン失敗の回数をリセットする。 -->
+	<update id="countZeroFailed">
+		UPDATE account
+		SET
+			failed_count = 0
+			updated_user = 'API_SERVER'
+		WHERE
+			user_id = #{userId}
+	</update>
+
+	<!-- アカウント情報を取得する。 -->
+	<select id="search" resultType="Integer">
+		SELECT
+			count(*)
+		FROM
+			account
+		<where>
+			user_id = #{userId}
+		</where>
+	</select>
+
+	<!-- アカウント情報を登録する。 -->
+	<insert id="insert" parameterType="jp.co.plans.apps.domain.model.Account">
+		INSERT INTO account
+		VALUES (
+			#{userId},
+			#{name},
+			#{jpName},
+			#{password},
+			#{userId},
+			now(),
+			#{userId},
+			now()
+			);
+	</insert>
+
+	<!-- アカウント情報を更新する。 -->
+	<update id="update" parameterType="jp.co.plans.apps.domain.model.Account">
+		UPDATE account
+		SET
+			name = #{name},
+			jp_name = #{jpName},
+			password = #{password},
+			updated_user = #{userId}
+		WHERE
+			user_id = #{userId}
+			AND white_flg = 0
+	</update>
+
+	<!-- 権限情報を取得する。 -->
+	<select id='searchAuthority' resultType="String">
+		SELECT authority FROM account GROUP BY authority;
+	</select>
+</mapper>
