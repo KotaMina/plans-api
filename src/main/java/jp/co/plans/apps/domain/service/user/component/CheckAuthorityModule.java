@@ -16,7 +16,7 @@ import jp.co.plans.apps.domain.mapper.AccountMapper;
 @Component
 public class CheckAuthorityModule {
 
-	private final static Logger logger = LoggerFactory.getLogger(LoginUserModule.class);
+	private final static Logger logger = LoggerFactory.getLogger(CheckAuthorityModule.class);
 
 	@Autowired
 	private AccountMapper accountMapper;
