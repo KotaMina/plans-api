@@ -9,12 +9,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.plans.apps.common.exception.ProcessException;
+import jp.co.plans.apps.constants.CodeConstants;
 import jp.co.plans.apps.domain.criteria.MenuCriteria;
 import jp.co.plans.apps.domain.mapper.AccountMapper;
 import jp.co.plans.apps.domain.mapper.AuthorityMenuMapper;
 import jp.co.plans.apps.domain.mapper.MenuMapper;
 import jp.co.plans.apps.domain.model.AuthorityMenu;
 import jp.co.plans.apps.domain.model.Menu;
+import jp.co.plans.apps.domain.service.user.UserService;
 
 /**
  *メニューの作成を行う。
@@ -33,12 +35,18 @@ public class InsertMenuModule {
 	@Autowired
 	private AuthorityMenuMapper authorityMenuMapper;
 
+	@Autowired
+	private UserService userService;
+
 	/**
 	 * メイン処理。
 	 * @return
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public void execute(MenuCriteria criteria) {
+
+		//権限チェックを行う。
+		userService.checkAuthority(criteria.getUserId(), CodeConstants.AUTHORITY_ADMIN);
 
 		//権限情報リストの初期化
 		List<String> authorityList = new ArrayList<>();
