@@ -16,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import jp.co.plans.apps.common.dto.ErrorInfo;
+import jp.co.plans.apps.common.exception.AccessDeniedException;
 import jp.co.plans.apps.common.exception.AuthException;
 import jp.co.plans.apps.common.exception.NotFoundException;
 import jp.co.plans.apps.common.exception.ProcessException;
@@ -100,6 +101,24 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		BaseResource resource = new BaseResource();
 
 		ErrorInfo error = new ErrorInfo("PROCESS_FAILED", e.getMessage() + "の処理に失敗しました。");
+		resource.setResult(CodeConstants.RESULT_NG);
+		resource.setErrorList(Arrays.asList(error));
+
+		return resource;
+	}
+
+	/**
+	 * AccessDeniedExceptionハンドリング
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler({ AccessDeniedException.class })
+	public BaseResource handleAccessDeniedException(AccessDeniedException e) {
+
+		e.printStackTrace();
+		BaseResource resource = new BaseResource();
+
+		ErrorInfo error = new ErrorInfo("ACCESS_DENIED", "アクセルができませんでした。");
 		resource.setResult(CodeConstants.RESULT_NG);
 		resource.setErrorList(Arrays.asList(error));
 
