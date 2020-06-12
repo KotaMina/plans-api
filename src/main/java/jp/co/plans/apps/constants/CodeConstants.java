@@ -18,4 +18,6 @@ public class CodeConstants {
 	/**実行結果NG : 1*/
 	public static final int RESULT_NG = 1;
 
+	/**権限コード：管理者*/
+	public static final String AUTHORITY_ADMIN = "110";
 }

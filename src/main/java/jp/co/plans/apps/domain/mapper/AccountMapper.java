@@ -62,4 +62,11 @@ public interface AccountMapper {
 	 * @return
 	 */
 	public List<String> searchAuthority();
+
+	/**
+	 * 権限が存在する場合は、true
+	 * @param userId
+	 * @return
+	 */
+	public boolean isExist(@Param("userId") String userId, @Param("authority") String authority);
 }

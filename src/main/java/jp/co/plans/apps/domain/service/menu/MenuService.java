@@ -28,4 +28,10 @@ public interface MenuService {
 	 * @return
 	 */
 	public void insert(MenuCriteria criteria);
+
+	/**
+	 * メニュー削除する。
+	 * @param criteria
+	 */
+	public void delete(MenuCriteria criteria);
 }

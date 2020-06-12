@@ -2,6 +2,7 @@ package jp.co.plans.apps.domain.service.user;
 
 import org.springframework.stereotype.Service;
 
+import jp.co.plans.apps.common.exception.AuthException;
 import jp.co.plans.apps.domain.criteria.UserCriteria;
 
 /**
@@ -45,4 +46,11 @@ public interface UserService {
 	 * @return
 	 */
 	public int resetFailedCount(UserCriteria criteria);
+
+	/**
+	 * 権限チェックを行う。
+	 * @param userId
+	 * @param authority
+	 */
+	public void checkAuthority(String userId, String authority) throws AuthException;
 }

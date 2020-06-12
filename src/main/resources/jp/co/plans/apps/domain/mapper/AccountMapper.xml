@@ -80,4 +80,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id='searchAuthority' resultType="String">
 		SELECT authority FROM account GROUP BY authority;
 	</select>
+
+	<!-- 権限が存在するか確認を行う。 -->
+	<select id="isExist" resultType="boolean">
+		SELECT EXISTS (
+		SELECT * FROM plans.account
+			<where>
+				userId = #{userId}
+				AND authority = #{authority}
+			</where>
+		);
+	</select>
 </mapper>

@@ -45,4 +45,11 @@ public class MenuServiceImpl implements MenuService {
 		insertModule.execute(criteria);
 	}
 
+	/**
+	 * メニュー削除を行う。
+	 */
+	public void delete(MenuCriteria criteria) {
+
+	}
+
 }

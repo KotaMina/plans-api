@@ -3,8 +3,10 @@ package jp.co.plans.apps.domain.service.user.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.co.plans.apps.common.exception.AuthException;
 import jp.co.plans.apps.domain.criteria.UserCriteria;
 import jp.co.plans.apps.domain.service.user.UserService;
+import jp.co.plans.apps.domain.service.user.component.CheckAuthorityModule;
 import jp.co.plans.apps.domain.service.user.component.InsertUserModule;
 import jp.co.plans.apps.domain.service.user.component.LoginUserModule;
 import jp.co.plans.apps.domain.service.user.component.ResetUserInfoModule;
@@ -33,6 +35,9 @@ public class UserServiceImpl implements UserService {
 	/**リセットモジュール*/
 	@Autowired
 	private ResetUserInfoModule resetModule;
+
+	@Autowired
+	private CheckAuthorityModule checkAuthorityModule;
 
 	/**
 	 * ログインする。
@@ -80,5 +85,14 @@ public class UserServiceImpl implements UserService {
 	public int resetFailedCount(UserCriteria criteria) {
 		//カウントを０にする。
 		return resetModule.resetCount(criteria);
+	}
+
+	/**
+	 * 権限チェックを行う。
+	 * @param userId
+	 * @param authority
+	 */
+	public void checkAuthority(String userId, String authority) throws AuthException {
+		checkAuthorityModule.execute(userId, authority);
 	}
 }
