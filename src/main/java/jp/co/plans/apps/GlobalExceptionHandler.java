@@ -118,7 +118,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		e.printStackTrace();
 		BaseResource resource = new BaseResource();
 
-		ErrorInfo error = new ErrorInfo("ACCESS_DENIED", "アクセルができませんでした。");
+		ErrorInfo error = new ErrorInfo("ACCESS_DENIED", "アクセスができませんでした。");
 		resource.setResult(CodeConstants.RESULT_NG);
 		resource.setErrorList(Arrays.asList(error));
 
