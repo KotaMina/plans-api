@@ -3,7 +3,6 @@ package jp.co.plans.apps.domain.service.user.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.co.plans.apps.common.exception.AuthException;
 import jp.co.plans.apps.domain.criteria.UserCriteria;
 import jp.co.plans.apps.domain.service.user.UserService;
 import jp.co.plans.apps.domain.service.user.component.CheckAuthorityModule;
@@ -44,6 +43,7 @@ public class UserServiceImpl implements UserService {
 	 * @param critera
 	 * @return
 	 */
+	@Override
 	public void login(UserCriteria criteria) {
 		//ログインを行う。
 		loginModule.execute(criteria);
@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
 	 * @param critera
 	 * @return
 	 */
+	@Override
 	public int search(UserCriteria criteria) {
 		//参照結果を返却する。
 		return searchModule.execute(criteria);
@@ -62,6 +63,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 新規ユーザーを登録する。
 	 */
+	@Override
 	public int insert(UserCriteria criteria) {
 		//登録を行う。
 		return insertModule.execute(criteria);
@@ -72,6 +74,7 @@ public class UserServiceImpl implements UserService {
 	 * @param criteria
 	 * @return
 	 */
+	@Override
 	public int update(UserCriteria criteria) {
 		//更新を行う。
 		return updateModule.execute(criteria);
@@ -82,6 +85,7 @@ public class UserServiceImpl implements UserService {
 	 * @param criteria
 	 * @return
 	 */
+	@Override
 	public int resetFailedCount(UserCriteria criteria) {
 		//カウントを０にする。
 		return resetModule.resetCount(criteria);
@@ -92,7 +96,8 @@ public class UserServiceImpl implements UserService {
 	 * @param userId
 	 * @param authority
 	 */
-	public void checkAuthority(String userId, String authority) throws AuthException {
+	@Override
+	public void checkAuthority(String userId, String authority) {
 		checkAuthorityModule.execute(userId, authority);
 	}
 }

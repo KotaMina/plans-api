@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import jp.co.plans.apps.common.exception.AuthException;
+import jp.co.plans.apps.common.exception.AccessDeniedException;
 import jp.co.plans.apps.domain.mapper.AccountMapper;
 
 /**
@@ -27,7 +27,7 @@ public class CheckAuthorityModule {
 	 * @param userId
 	 * @param authority
 	 */
-	public void execute(String userId, String authority) throws AuthException {
+	public void execute(String userId, String authority) {
 		logger.debug("権限チェック開始");
 
 		//権限の存在チェックを行う。
@@ -37,7 +37,7 @@ public class CheckAuthorityModule {
 		if (!isExist) {
 			//例外処理を行う。
 			logger.debug("権限チェックエラー");
-			throw new AuthException();
+			throw new AccessDeniedException();
 		}
 
 		logger.debug("権限チェック終了");
