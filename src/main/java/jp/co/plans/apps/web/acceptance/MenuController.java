@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.plans.apps.common.dto.MenuInfo;
+import jp.co.plans.apps.common.utils.CommonUtils;
 import jp.co.plans.apps.common.utils.ValidationUtils;
 import jp.co.plans.apps.constants.CodeConstants;
 import jp.co.plans.apps.domain.criteria.MenuCriteria;
@@ -163,7 +164,8 @@ public class MenuController {
 		criteria.setName(query.getName());
 		criteria.setJpName(query.getJpName());
 		criteria.setPath(query.getPath());
-		criteria.setAvailableFlg(query.getAvailableFlg());
+		criteria.setAvailableFlg(
+				CommonUtils.isEmpty(query.getAvailableFlg()) ? 0 : Integer.parseInt(query.getAvailableFlg()));
 		criteria.setAuthority(query.getAuthority());
 		criteria.setAuthorityList(query.getAuthorityList());
 

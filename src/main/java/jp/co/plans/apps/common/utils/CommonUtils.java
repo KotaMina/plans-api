@@ -1,5 +1,9 @@
 package jp.co.plans.apps.common.utils;
 
+import java.util.Objects;
+
+import org.springframework.util.StringUtils;
+
 import jp.co.plans.apps.common.dto.ErrorInfo;
 
 /**
@@ -28,21 +32,11 @@ public class CommonUtils {
 	}
 
 	/**
-	 * 時間を判定して、区分値を返却する。
-	 * @param time
+	 * 空の場合は、True
+	 * @param src
 	 * @return
 	 */
-	public static String chkTimeDiv(String time) {
-		//初期化
-		String timeDivision = null;
-
-		try {
-
-		} catch (Exception e) {
-			//測定不明
-			timeDivision = "0";
-		}
-
-		return timeDivision;
+	public static boolean isEmpty(String src) {
+		return Objects.isNull(src) || StringUtils.isEmpty(src);
 	}
 }
