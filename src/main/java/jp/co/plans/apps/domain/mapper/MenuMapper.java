@@ -20,7 +20,7 @@ public interface MenuMapper {
 	 * @param userId
 	 * @Param authorityList
 	 * @return	 */
-	public List<Menu> search(@Param("userId") String userId, @Param("authorityList") List<String> authorityList);
+	public List<Menu> search(@Param("authorityList") List<String> authorityList);
 
 	/**
 	 * メニュー情報を登録する。

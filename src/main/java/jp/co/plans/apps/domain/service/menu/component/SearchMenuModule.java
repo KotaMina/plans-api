@@ -35,7 +35,7 @@ public class SearchMenuModule {
 		List<MenuInfo> result = new ArrayList<>();
 
 		//メニュー情報を取得する。
-		List<Menu> menuList = menuMapper.search(criteria.getUserId(), criteria.getAuthorityList());
+		List<Menu> menuList = menuMapper.search(criteria.getAuthorityList());
 
 		//取得できない場合は、例外発生。
 		if (Objects.isNull(menuList) || menuList.size() == 0) {
