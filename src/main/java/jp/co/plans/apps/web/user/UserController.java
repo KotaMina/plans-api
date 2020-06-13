@@ -51,13 +51,15 @@ public class UserController {
 	public ResponseEntity<UserResource> login(HttpServletRequest request, @Valid @RequestBody UserQuery query,
 			BindingResult bindingResult) {
 
-		logger.debug("パラメータチェックエラー => {}", bindingResult);
+		//結果初期化
+		UserResource resource = new UserResource();
 
 		//エラーが発生した場合は、エラーを格納する。
 		if (bindingResult.hasErrors()) {
-			UserResource resource = new UserResource();
 			resource.setErrorList(validationUtils.setValidationErrors(bindingResult));
 			resource.setResult(CodeConstants.RESULT_NG);
+
+			logger.debug("精査チェックエラー => {}", resource);
 			return ResponseEntity.ok().body(resource);
 		}
 
@@ -66,9 +68,6 @@ public class UserController {
 
 		//ログイン処理を行う。
 		userService.login(criteria);
-
-		//結果初期化
-		UserResource resource = new UserResource();
 
 		//セッション時間を格納する。
 		resource.setIntervalTime(60 / 2);
@@ -111,14 +110,22 @@ public class UserController {
 	@RequestMapping(value = "/signup/new", method = { RequestMethod.POST })
 	public ResponseEntity<BaseResource> insert(HttpServletRequest request, @RequestBody @Validated UserQuery query,
 			BindingResult bindingResult) {
+		//結果初期化
+		BaseResource resource = new BaseResource();
+
+		//エラーが発生した場合は、エラーを格納する。
+		if (bindingResult.hasErrors()) {
+			resource.setErrorList(validationUtils.setValidationErrors(bindingResult));
+			resource.setResult(CodeConstants.RESULT_NG);
+
+			logger.debug("精査チェックエラー => {}", resource);
+			return ResponseEntity.ok().body(resource);
+		}
 
 		//引数をセットする。
 		UserCriteria criteria = toMap(query);
 
 		int result = userService.insert(criteria);
-
-		//結果初期化
-		BaseResource resource = new BaseResource();
 
 		//取得できなかった場合、エラー情報を格納する。
 		if (Objects.equals(result, CodeConstants.RESULT_NG)) {
@@ -138,13 +145,22 @@ public class UserController {
 	public ResponseEntity<BaseResource> update(HttpServletRequest request, @RequestBody @Validated UserQuery query,
 			BindingResult bindingResult) {
 
+		//結果初期化
+		BaseResource resource = new BaseResource();
+
+		//エラーが発生した場合は、エラーを格納する。
+		if (bindingResult.hasErrors()) {
+			resource.setErrorList(validationUtils.setValidationErrors(bindingResult));
+			resource.setResult(CodeConstants.RESULT_NG);
+
+			logger.debug("精査チェックエラー => {}", resource);
+			return ResponseEntity.ok().body(resource);
+		}
+
 		//引数をセットする。
 		UserCriteria criteria = toMap(query);
 
 		int result = userService.update(criteria);
-
-		//結果初期化
-		BaseResource resource = new BaseResource();
 
 		//取得できなかった場合、エラー情報を格納する。
 		if (Objects.equals(result, CodeConstants.RESULT_NG)) {
@@ -165,13 +181,22 @@ public class UserController {
 			@RequestBody @Validated UserQuery query,
 			BindingResult bindingResult) {
 
+		//結果初期化
+		BaseResource resource = new BaseResource();
+
+		//エラーが発生した場合は、エラーを格納する。
+		if (bindingResult.hasErrors()) {
+			resource.setErrorList(validationUtils.setValidationErrors(bindingResult));
+			resource.setResult(CodeConstants.RESULT_NG);
+
+			logger.debug("精査チェックエラー => {}", resource);
+			return ResponseEntity.ok().body(resource);
+		}
+
 		//引数をセットする。
 		UserCriteria criteria = toMap(query);
 
 		int result = userService.resetFailedCount(criteria);
-
-		//結果初期化
-		BaseResource resource = new BaseResource();
 
 		//取得できなかった場合、エラー情報を格納する。
 		if (Objects.equals(result, CodeConstants.RESULT_NG)) {

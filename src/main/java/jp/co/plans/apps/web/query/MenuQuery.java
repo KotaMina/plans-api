@@ -18,8 +18,6 @@ public class MenuQuery extends BaseQuery implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	/**ユーザーID*/
-	private String userId;
 	/**メニューID*/
 	private String menuId;
 	/**メニュー名*/

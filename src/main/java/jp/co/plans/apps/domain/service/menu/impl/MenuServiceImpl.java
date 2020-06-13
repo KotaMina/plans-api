@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import jp.co.plans.apps.common.dto.MenuInfo;
 import jp.co.plans.apps.domain.criteria.MenuCriteria;
 import jp.co.plans.apps.domain.service.menu.MenuService;
+import jp.co.plans.apps.domain.service.menu.component.DeleteMenuModule;
 import jp.co.plans.apps.domain.service.menu.component.InsertMenuModule;
 import jp.co.plans.apps.domain.service.menu.component.SearchMenuModule;
 
@@ -25,11 +26,15 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	private InsertMenuModule insertModule;
 
+	@Autowired
+	private DeleteMenuModule deleteModule;
+
 	/**
 	 * ユーザー情報を取得する。
 	 * @param userId
 	 * @return
 	 */
+	@Override
 	public List<MenuInfo> search(MenuCriteria criteria) {
 		//検索結果を返却する。
 		return searchModule.execute(criteria);
@@ -51,7 +56,8 @@ public class MenuServiceImpl implements MenuService {
 	 */
 	@Override
 	public void delete(MenuCriteria criteria) {
-
+		//削除を行う。
+		deleteModule.execute(criteria);
 	}
 
 }

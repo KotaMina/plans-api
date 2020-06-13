@@ -86,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT EXISTS (
 		SELECT * FROM plans.account
 			<where>
-				userId = #{userId}
+				user_id = #{userId}
 				AND authority = #{authority}
 			</where>
 		);
