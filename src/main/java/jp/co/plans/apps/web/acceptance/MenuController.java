@@ -17,12 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.plans.apps.common.dto.MenuInfo;
-import jp.co.plans.apps.common.utils.CommonUtils;
 import jp.co.plans.apps.common.utils.ValidationUtils;
 import jp.co.plans.apps.constants.CodeConstants;
 import jp.co.plans.apps.domain.criteria.MenuCriteria;
 import jp.co.plans.apps.domain.service.menu.MenuService;
-import jp.co.plans.apps.domain.service.user.UserService;
 import jp.co.plans.apps.web.query.MenuQuery;
 import jp.co.plans.apps.web.resource.MenuResource;
 
@@ -39,9 +37,6 @@ public class MenuController {
 
 	@Autowired
 	private MenuService menuService;
-
-	@Autowired
-	private UserService userService;
 
 	@Autowired
 	private ValidationUtils validationUtils;
@@ -83,76 +78,6 @@ public class MenuController {
 	}
 
 	/**
-	 * メニューの作成を行う。
-	 * @return
-	 */
-	@RequestMapping(value = "/admin/newmenu/", method = { RequestMethod.POST })
-	public ResponseEntity<MenuResource> insert(HttpServletRequest request, @RequestBody @Validated MenuQuery query,
-			BindingResult bindingResult) {
-
-		logger.debug("メニュー取得登録開始 => {}", query);
-
-		//結果初期化
-		MenuResource resource = new MenuResource();
-
-		//エラーが発生した場合は、エラーを格納する。
-		if (bindingResult.hasErrors()) {
-			resource.setErrorList(validationUtils.setValidationErrors(bindingResult));
-			resource.setResult(CodeConstants.RESULT_NG);
-
-			logger.debug("精査チェックエラー => {}", resource);
-			return ResponseEntity.ok().body(resource);
-		}
-
-		//管理者権限チェックを行う。
-		userService.checkAuthority(query.getUserId(), CodeConstants.AUTHORITY_ADMIN);
-		//メニュー情報を作成を行う。
-		menuService.insert(toMap(query));
-
-		//結果を格納する。
-		resource.setResult(CodeConstants.RESULT_OK);
-
-		logger.debug("メニュー登録処理終了 => {}", resource);
-
-		return ResponseEntity.ok().body(resource);
-	}
-
-	/**
-	 * メニューの削除を行う。
-	 * @return
-	 */
-	@RequestMapping(value = "/admin/deletemenu/", method = { RequestMethod.DELETE })
-	public ResponseEntity<MenuResource> delete(HttpServletRequest request, @RequestBody @Validated MenuQuery query,
-			BindingResult bindingResult) {
-
-		logger.debug("メニュー取得削除開始 => {}", query);
-
-		//結果初期化
-		MenuResource resource = new MenuResource();
-
-		//エラーが発生した場合は、エラーを格納する。
-		if (bindingResult.hasErrors()) {
-			resource.setErrorList(validationUtils.setValidationErrors(bindingResult));
-			resource.setResult(CodeConstants.RESULT_NG);
-
-			logger.debug("精査チェックエラー => {}", resource);
-			return ResponseEntity.ok().body(resource);
-		}
-
-		//管理者権限チェックを行う。
-		userService.checkAuthority(query.getUserId(), CodeConstants.AUTHORITY_ADMIN);
-		//メニュー情報を作成を行う。
-		menuService.delete(toMap(query));
-
-		//結果を格納する。
-		resource.setResult(CodeConstants.RESULT_OK);
-
-		logger.debug("メニュー削除処理終了 => {}", resource);
-
-		return ResponseEntity.ok().body(resource);
-	}
-
-	/**
 	 * マッピングを行う。
 	 * @param query
 	 * @return
@@ -161,14 +86,6 @@ public class MenuController {
 
 		MenuCriteria criteria = new MenuCriteria();
 
-		criteria.setUserId(query.getUserId());
-		criteria.setMenuId(query.getMenuId());
-		criteria.setName(query.getName());
-		criteria.setJpName(query.getJpName());
-		criteria.setPath(query.getPath());
-		criteria.setAvailableFlg(
-				CommonUtils.isEmpty(query.getAvailableFlg()) ? 0 : Integer.parseInt(query.getAvailableFlg()));
-		criteria.setAuthority(query.getAuthority());
 		criteria.setAuthorityList(query.getAuthorityList());
 
 		return criteria;
