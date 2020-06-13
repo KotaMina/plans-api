@@ -173,42 +173,6 @@ public class UserController {
 	}
 
 	/**
-	 * ログイン失敗回数のリセットを行う。
-	 * @return
-	 */
-	@RequestMapping(value = "/admin/reset", method = { RequestMethod.PUT })
-	public ResponseEntity<BaseResource> resetFailedCount(HttpServletRequest request,
-			@RequestBody @Validated UserQuery query,
-			BindingResult bindingResult) {
-
-		//結果初期化
-		BaseResource resource = new BaseResource();
-
-		//エラーが発生した場合は、エラーを格納する。
-		if (bindingResult.hasErrors()) {
-			resource.setErrorList(validationUtils.setValidationErrors(bindingResult));
-			resource.setResult(CodeConstants.RESULT_NG);
-
-			logger.debug("精査チェックエラー => {}", resource);
-			return ResponseEntity.ok().body(resource);
-		}
-
-		//引数をセットする。
-		UserCriteria criteria = toMap(query);
-
-		int result = userService.resetFailedCount(criteria);
-
-		//取得できなかった場合、エラー情報を格納する。
-		if (Objects.equals(result, CodeConstants.RESULT_NG)) {
-			resource.setErrorList(Arrays.asList(CommonUtils.error("RESET_FAILED", "ユーザー情報の更新ができませんでした。")));
-		}
-
-		resource.setResult(result);
-
-		return ResponseEntity.ok().body(resource);
-	}
-
-	/**
 	 * マッピングする。
 	 * @return
 	 */
