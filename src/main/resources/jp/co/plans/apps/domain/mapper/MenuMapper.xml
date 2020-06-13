@@ -7,25 +7,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- メニュー情報を取得する。 -->
 	<select id="search" resultType="jp.co.plans.apps.domain.model.Menu">
 		SELECT
-			menuId,
+			menu_id menuId,
 			name,
-			jp_name,
+			jp_name jpName,
 			path
 		FROM
 			menu
 		WHERE
 			available_flg = 0
-			<if test="authorityList != null">
-			AND authority IN
-				  <foreach item="authorityList" index="auth" collection="list"
-      open="(" separator="," close=")">
+			AND authority IN ("000"
+			<if test="authorityList != null and authorityList.size() > 0">
+				<foreach item="auth" collection="authorityList" open="," separator=",">
 					#{auth}
 				</foreach>
 			</if>
-			<if test="authorityList == null">
-			<!-- 一般ユーザーメニュを表示させる。 -->
-			AND authority = "000"
-			</if>
+			);
 	</select>
 
 	<!-- メニュー情報を登録する。 -->

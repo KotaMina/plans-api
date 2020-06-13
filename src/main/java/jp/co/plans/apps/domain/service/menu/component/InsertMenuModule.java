@@ -50,6 +50,8 @@ public class InsertMenuModule {
 		menu.setPath(criteria.getPath());
 		menu.setAuthority(criteria.getAuthority());
 		menu.setAvailableFlg(criteria.getAvailableFlg());
+		menu.setCreateUser(criteria.getUserId());
+		menu.setUpdatedUser(criteria.getUserId());
 
 		return menu;
 	}
