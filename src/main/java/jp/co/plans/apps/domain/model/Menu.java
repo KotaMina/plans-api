@@ -13,6 +13,8 @@ public class Menu implements Serializable {
 	private String menuId;
 	/**メニュー名*/
 	private String name;
+	/**メニュー名：和名*/
+	private String jpName;
 	/**リンクパス*/
 	private String path;
 	/**権限情報*/

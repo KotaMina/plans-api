@@ -44,7 +44,8 @@ public class DeleteMenuModule {
 		Menu menu = new Menu();
 
 		menu.setMenuId(criteria.getMenuId());
-		menu.setName(criteria.getMenuName());
+		menu.setName(criteria.getName());
+		menu.setJpName(criteria.getJpName());
 		menu.setPath(criteria.getPath());
 		menu.setAuthority(criteria.getAuthority());
 		menu.setAvailableFlg(criteria.getAvailableFlg());

@@ -102,7 +102,7 @@ public class MenuController {
 		}
 
 		//管理者権限チェックを行う。
-		userService.checkAuthority(query.getAccountInfo().getUserId(), CodeConstants.AUTHORITY_ADMIN);
+		userService.checkAuthority(query.getUserId(), CodeConstants.AUTHORITY_ADMIN);
 		//メニュー情報を作成を行う。
 		menuService.insert(toMap(query));
 
@@ -137,7 +137,7 @@ public class MenuController {
 		}
 
 		//管理者権限チェックを行う。
-		userService.checkAuthority(query.getAccountInfo().getUserId(), CodeConstants.AUTHORITY_ADMIN);
+		userService.checkAuthority(query.getUserId(), CodeConstants.AUTHORITY_ADMIN);
 		//メニュー情報を作成を行う。
 		menuService.delete(toMap(query));
 
@@ -158,9 +158,10 @@ public class MenuController {
 
 		MenuCriteria criteria = new MenuCriteria();
 
-		criteria.setUserId(query.getAccountInfo().getUserId());
+		criteria.setUserId(query.getUserId());
 		criteria.setMenuId(query.getMenuId());
-		criteria.setMenuName(query.getMenuName());
+		criteria.setName(query.getName());
+		criteria.setJpName(query.getJpName());
 		criteria.setPath(query.getPath());
 		criteria.setAvailableFlg(query.getAvailableFlg());
 		criteria.setAuthority(query.getAuthority());

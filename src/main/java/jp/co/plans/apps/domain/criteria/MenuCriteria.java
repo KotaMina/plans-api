@@ -16,7 +16,8 @@ public class MenuCriteria implements Serializable {
 	/**メニューID*/
 	private String menuId;
 	/**メニュー名*/
-	private String menuName;
+	private String name;
+	private String jpName;
 	/**パス*/
 	private String path;
 	/**権限情報*/

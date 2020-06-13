@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 			menuId,
 			name,
+			jp_name,
 			path
 		FROM
 			menu
@@ -33,6 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (
 			#{menuId},
 			#{name},
+			#{jpName},
 			#{path},
 			#{availableFlg},
 			#{authority},
@@ -48,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			menu_id = #{menuId}
 			AND name = #{name}
+			AND jp_name = #{jpName}
 			AND path = #{path}
 			AND authority = #{authority}
 			;

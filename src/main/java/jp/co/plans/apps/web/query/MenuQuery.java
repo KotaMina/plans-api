@@ -21,7 +21,9 @@ public class MenuQuery extends BaseQuery implements Serializable {
 	/**メニューID*/
 	private String menuId;
 	/**メニュー名*/
-	private String menuName;
+	private String name;
+	/**メニュー名 日本*/
+	private String jpName;
 	/**パス*/
 	private String path;
 	/**有効フラグ*/
