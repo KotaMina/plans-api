@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,7 +50,8 @@ public class MenuController {
 	 * メニューの取得を行う。
 	 * @return
 	 */
-	@RequestMapping(value = "/menu", method = { RequestMethod.GET })
+	@RequestMapping(value = "/menu", method = { RequestMethod.POST })
+	@CrossOrigin(origins = { "http://localhost:3000" })
 	public ResponseEntity<MenuResource> search(HttpServletRequest request, @RequestBody @Validated MenuQuery query,
 			BindingResult bindingResult) {
 
@@ -119,7 +121,7 @@ public class MenuController {
 	 * メニューの削除を行う。
 	 * @return
 	 */
-	@RequestMapping(value = "/admin/deletemenu/", method = { RequestMethod.POST })
+	@RequestMapping(value = "/admin/deletemenu/", method = { RequestMethod.DELETE })
 	public ResponseEntity<MenuResource> delete(HttpServletRequest request, @RequestBody @Validated MenuQuery query,
 			BindingResult bindingResult) {
 

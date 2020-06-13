@@ -47,7 +47,7 @@ public class UserController {
 	 * ログインを行う。
 	 * @return
 	 */
-	@RequestMapping(value = "/login", method = { RequestMethod.POST })
+	@RequestMapping(value = "/login", method = { RequestMethod.GET })
 	public ResponseEntity<UserResource> login(HttpServletRequest request, @Valid @RequestBody UserQuery query,
 			BindingResult bindingResult) {
 
@@ -141,7 +141,7 @@ public class UserController {
 	 * ユーザーの更新を行う。
 	 * @return
 	 */
-	@RequestMapping(value = "/user/update", method = { RequestMethod.POST })
+	@RequestMapping(value = "/user/update", method = { RequestMethod.PUT })
 	public ResponseEntity<BaseResource> update(HttpServletRequest request, @RequestBody @Validated UserQuery query,
 			BindingResult bindingResult) {
 
@@ -176,7 +176,7 @@ public class UserController {
 	 * ログイン失敗回数のリセットを行う。
 	 * @return
 	 */
-	@RequestMapping(value = "/admin/reset", method = { RequestMethod.POST })
+	@RequestMapping(value = "/admin/reset", method = { RequestMethod.PUT })
 	public ResponseEntity<BaseResource> resetFailedCount(HttpServletRequest request,
 			@RequestBody @Validated UserQuery query,
 			BindingResult bindingResult) {
