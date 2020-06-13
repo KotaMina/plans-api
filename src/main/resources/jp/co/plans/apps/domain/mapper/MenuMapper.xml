@@ -7,25 +7,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- メニュー情報を取得する。 -->
 	<select id="search" resultType="jp.co.plans.apps.domain.model.Menu">
 		SELECT
-			m.menu_id menuId,
-			m.name name,
-			m.path path
+			menuId,
+			name,
+			path
 		FROM
-			menu m
-		INNER JOIN
-			authority_menu auth
-			ON
-				m.menu_id = auth.menu_id
+			menu
 		WHERE
-		<choose>
-			<when test="userId != null and userId != ''">
-			auth.authority = (SELECT authority FROM account WHERE user_id = #{userId})
-			</when>
-			<otherwise>
-			auth.authority = '000'
-			</otherwise>
-		</choose>
-			AND available_flg = 0;
+			available_flg = 0
+			<if test="authorityList != null">
+			AND authority IN
+				  <foreach item="authorityList" index="auth" collection="list"
+      open="(" separator="," close=")">
+					#{auth}
+				</foreach>
+			</if>
+			<if test="authorityList == null">
+			<!-- 一般ユーザーメニュを表示させる。 -->
+			AND authority = "000"
+			</if>
 	</select>
 
 	<!-- メニュー情報を登録する。 -->
@@ -35,11 +34,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{menuId},
 			#{name},
 			#{path},
-			'0',
+			#{availableFlg},
+			#{authority},
 			'SERVER',
 			now(),
 			'SERVER',
 			now()
 			);
 	</insert>
+	<!-- メニューを削除する。 -->
+	<delete id="delete">
+		DELETE FROM menu
+		WHERE
+			menu_id = #{menuId}
+			AND name = #{name}
+			AND path = #{path}
+			AND authority = #{authority}
+			;
+	</delete>
 </mapper>

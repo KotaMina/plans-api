@@ -20,7 +20,7 @@ public interface MenuService {
 	 * @param userId
 	 * @return
 	 */
-	public List<MenuInfo> search(String userId);
+	public List<MenuInfo> search(MenuCriteria criteria);
 
 	/**
 	 * メニュー情報の登録を行う。

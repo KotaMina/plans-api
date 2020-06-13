@@ -9,11 +9,16 @@ public class Menu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/**メニューID*/
 	private String menuId;
+	/**メニュー名*/
 	private String name;
+	/**リンクパス*/
 	private String path;
+	/**権限情報*/
 	private String authority;
-	private String availableFlg;
+	/**有効フラグ 0:有効　1:無効*/
+	private int availableFlg = 0;
 	/**作成者*/
 	private String createUser;
 	/**作成日時*/

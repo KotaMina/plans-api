@@ -17,6 +17,7 @@ import jp.co.plans.apps.common.dto.MenuInfo;
 import jp.co.plans.apps.constants.CodeConstants;
 import jp.co.plans.apps.domain.criteria.MenuCriteria;
 import jp.co.plans.apps.domain.service.menu.MenuService;
+import jp.co.plans.apps.domain.service.user.UserService;
 import jp.co.plans.apps.web.query.MenuQuery;
 import jp.co.plans.apps.web.resource.MenuResource;
 
@@ -32,6 +33,9 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 
+	@Autowired
+	private UserService userService;
+
 	/**
 	 * メニューの取得を行う。
 	 * @return
@@ -44,7 +48,7 @@ public class MenuController {
 		MenuResource resource = new MenuResource();
 
 		//メニュー情報を取得する。
-		List<MenuInfo> menuList = menuService.search(query.getUserId());
+		List<MenuInfo> menuList = menuService.search(toMap(query));
 
 		//結果を格納する。
 		resource.setMenuList(menuList);
@@ -65,7 +69,9 @@ public class MenuController {
 		//結果初期化
 		MenuResource resource = new MenuResource();
 
-		//メニュー情報を取得する。
+		//管理者権限チェックを行う。
+		userService.checkAuthority(query.getUserId(), CodeConstants.AUTHORITY_ADMIN);
+		//メニュー情報を作成を行う。
 		menuService.insert(toMap(query));
 		//結果を格納する。
 		resource.setResult(CodeConstants.RESULT_OK);
@@ -82,11 +88,13 @@ public class MenuController {
 
 		MenuCriteria criteria = new MenuCriteria();
 
-		criteria.setAuthority(query.getAuthority());
 		criteria.setMenuId(query.getMenuId());
 		criteria.setMenuName(query.getMenuName());
 		criteria.setPath(query.getPath());
 		criteria.setUserId(query.getUserId());
+		criteria.setAvailableFlg(query.getAvailableFlg());
+		criteria.setAuthority(query.getAuthority());
+		criteria.setAuthorityList(query.getAuthorityList());
 
 		return criteria;
 	}

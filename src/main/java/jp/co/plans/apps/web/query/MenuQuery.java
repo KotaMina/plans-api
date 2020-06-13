@@ -26,6 +26,10 @@ public class MenuQuery extends BaseQuery implements Serializable {
 	private String menuName;
 	/**パス*/
 	private String path;
-	/**権限情報*/
-	private List<String> authority = new ArrayList<>();
+	/**有効フラグ*/
+	private int availableFlg = 0;
+	/**登録時の権限情報*/
+	private String authority;
+	/**メニュ表示権限リスト*/
+	private List<String> authorityList = new ArrayList<>();
 }

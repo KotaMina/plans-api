@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import jp.co.plans.apps.common.dto.MenuInfo;
 import jp.co.plans.apps.common.exception.ProcessException;
+import jp.co.plans.apps.domain.criteria.MenuCriteria;
 import jp.co.plans.apps.domain.mapper.MenuMapper;
 import jp.co.plans.apps.domain.model.Menu;
 
@@ -28,11 +29,13 @@ public class SearchMenuModule {
 	 * @param userId
 	 * @return
 	 */
-	public List<MenuInfo> execute(String userId) {
+	public List<MenuInfo> execute(MenuCriteria criteria) {
+
+		//結果初期化
 		List<MenuInfo> result = new ArrayList<>();
 
 		//メニュー情報を取得する。
-		List<Menu> menuList = menuMapper.search(userId);
+		List<Menu> menuList = menuMapper.search(criteria.getUserId(), criteria.getAuthorityList());
 
 		//取得できない場合は、例外発生。
 		if (Objects.isNull(menuList) || menuList.size() == 0) {

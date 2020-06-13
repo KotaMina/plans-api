@@ -30,9 +30,9 @@ public class MenuServiceImpl implements MenuService {
 	 * @param userId
 	 * @return
 	 */
-	public List<MenuInfo> search(String userId) {
+	public List<MenuInfo> search(MenuCriteria criteria) {
 		//検索結果を返却する。
-		return searchModule.execute(userId);
+		return searchModule.execute(criteria);
 	}
 
 	/**
@@ -40,6 +40,7 @@ public class MenuServiceImpl implements MenuService {
 	 * @param criteria
 	 * @return
 	 */
+	@Override
 	public void insert(MenuCriteria criteria) {
 		//登録処理を行う。
 		insertModule.execute(criteria);
@@ -48,6 +49,7 @@ public class MenuServiceImpl implements MenuService {
 	/**
 	 * メニュー削除を行う。
 	 */
+	@Override
 	public void delete(MenuCriteria criteria) {
 
 	}

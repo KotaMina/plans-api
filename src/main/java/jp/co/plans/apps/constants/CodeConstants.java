@@ -19,5 +19,8 @@ public class CodeConstants {
 	public static final int RESULT_NG = 1;
 
 	/**権限コード：管理者*/
-	public static final String AUTHORITY_ADMIN = "110";
+	public static final String AUTHORITY_ADMIN = "010";
+
+	/**権限コード：一般*/
+	public static final String AUTHORITY_GENERAL = "000";
 }
