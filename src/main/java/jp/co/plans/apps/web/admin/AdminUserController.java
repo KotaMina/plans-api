@@ -63,10 +63,10 @@ public class AdminUserController {
 			return ResponseEntity.ok().body(resource);
 		}
 
-		//引数をセットする。
-		UserCriteria criteria = toMap(query);
+		//管理者権限チェックを行う。
+		userService.checkAuthority(query.getUserId(), CodeConstants.AUTHORITY_ADMIN);
 
-		int result = userService.resetFailedCount(criteria);
+		int result = userService.resetFailedCount(toMap(query));
 
 		//取得できなかった場合、エラー情報を格納する。
 		if (Objects.equals(result, CodeConstants.RESULT_NG)) {
