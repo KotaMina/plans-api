@@ -24,6 +24,8 @@ public class MenuCriteria implements Serializable {
 	private String authority;
 	/**有効フラグ*/
 	private int availableFlg = 0;
+	/**表示エリア*/
+	private int areaType = 0;
 
 	/**メニュ表示権限リスト：管理者権限ごとにメニュー表示を可変したい場合に使用*/
 	private List<String> authorityList = new ArrayList<>();

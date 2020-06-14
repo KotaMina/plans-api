@@ -39,4 +39,23 @@ public class CommonUtils {
 	public static boolean isEmpty(String src) {
 		return Objects.isNull(src) || StringUtils.isEmpty(src);
 	}
+
+	/**
+	 * 数字かどうかを判定する。
+	 * @param src
+	 * @return
+	 */
+	public static boolean isNumeric(String src) {
+		if (isEmpty(src)) {
+			return true;
+		}
+
+		try {
+			Integer.parseInt(src);
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
+	}
 }

@@ -18,6 +18,8 @@ public class MenuInfo implements Serializable {
 	private String name;
 	/**メニュー名（日本名)*/
 	private String jpName;
+	/**表示エリア*/
+	private String areaType;
 	/**パス*/
 	private String path;
 }

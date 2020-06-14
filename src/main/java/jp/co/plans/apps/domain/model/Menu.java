@@ -19,6 +19,8 @@ public class Menu implements Serializable {
 	private String path;
 	/**権限情報*/
 	private String authority;
+	/**表示エリア*/
+	private int areaType = 0;
 	/**有効フラグ 0:有効　1:無効*/
 	private int availableFlg = 0;
 	/**作成者*/

@@ -167,7 +167,11 @@ public class AdminMenuController {
 		criteria.setJpName(query.getJpName());
 		criteria.setPath(query.getPath());
 		criteria.setAvailableFlg(
-				CommonUtils.isEmpty(query.getAvailableFlg()) ? 0 : Integer.parseInt(query.getAvailableFlg()));
+				CommonUtils.isEmpty(query.getAvailableFlg()) || !CommonUtils.isNumeric(query.getAvailableFlg()) ? 0
+						: Integer.parseInt(query.getAvailableFlg()));
+		criteria.setAreaType(
+				CommonUtils.isEmpty(query.getAreaType()) || !CommonUtils.isNumeric(query.getAreaType()) ? 0
+						: Integer.parseInt(query.getAreaType()));
 		criteria.setAuthority(query.getAuthority());
 		criteria.setAuthorityList(query.getAuthorityList());
 

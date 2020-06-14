@@ -32,6 +32,8 @@ public class MenuQuery extends BaseQuery implements Serializable {
 	/**パス*/
 	@MaxLength(max = 255, params = "リンクパス")
 	private String path;
+	@Numeric(params = "エリアタイプ")
+	private String areaType;
 	/**有効フラグ*/
 	@Numeric(params = "権限フラグ")
 	private String availableFlg;

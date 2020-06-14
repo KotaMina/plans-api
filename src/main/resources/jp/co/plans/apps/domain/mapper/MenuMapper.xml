@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			menu_id menuId,
 			name,
 			jp_name jpName,
+			area_type areaType
 			path
 		FROM
 			menu
@@ -33,6 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{jpName},
 			#{path},
 			#{availableFlg},
+			#{areaType}
 			#{authority},
 			'SERVER',
 			now(),
