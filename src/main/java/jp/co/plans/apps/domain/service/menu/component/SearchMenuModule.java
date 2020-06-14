@@ -48,6 +48,7 @@ public class SearchMenuModule {
 			info.setMenuId(menu.getMenuId());
 			info.setName(menu.getName());
 			info.setJpName(menu.getJpName());
+			info.setAreaType(String.valueOf(menu.getAreaType()));
 			info.setPath(menu.getPath());
 			result.add(info);
 		}

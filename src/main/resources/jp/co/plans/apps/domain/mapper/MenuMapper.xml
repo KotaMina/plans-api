@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			menu_id menuId,
 			name,
 			jp_name jpName,
-			area_type areaType
+			area_type areaType,
 			path
 		FROM
 			menu
