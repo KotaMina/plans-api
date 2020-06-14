@@ -49,6 +49,7 @@ public class InsertMenuModule {
 		menu.setJpName(criteria.getJpName());
 		menu.setPath(criteria.getPath());
 		menu.setAuthority(criteria.getAuthority());
+		menu.setAreaType(criteria.getAreaType());
 		menu.setAvailableFlg(criteria.getAvailableFlg());
 		menu.setCreateUser(criteria.getUserId());
 		menu.setUpdatedUser(criteria.getUserId());

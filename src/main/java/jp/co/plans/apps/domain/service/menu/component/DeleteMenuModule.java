@@ -48,6 +48,7 @@ public class DeleteMenuModule {
 		menu.setJpName(criteria.getJpName());
 		menu.setPath(criteria.getPath());
 		menu.setAuthority(criteria.getAuthority());
+		menu.setAreaType(criteria.getAreaType());
 		menu.setAvailableFlg(criteria.getAvailableFlg());
 
 		return menu;
