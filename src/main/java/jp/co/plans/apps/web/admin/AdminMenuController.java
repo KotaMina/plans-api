@@ -32,7 +32,7 @@ import jp.co.plans.apps.web.resource.MenuResource;
  *
  */
 @RestController
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "/api/admin")
 public class AdminMenuController {
 
 	private final static Logger logger = LoggerFactory.getLogger(AdminMenuController.class);

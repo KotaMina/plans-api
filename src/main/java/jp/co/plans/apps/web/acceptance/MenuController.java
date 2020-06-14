@@ -30,7 +30,7 @@ import jp.co.plans.apps.web.resource.MenuResource;
  *
  */
 @RestController
-@RequestMapping(value = "/request")
+@RequestMapping(value = "/api")
 public class MenuController {
 
 	private final static Logger logger = LoggerFactory.getLogger(MenuController.class);

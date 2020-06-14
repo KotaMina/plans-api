@@ -34,6 +34,7 @@ import jp.co.plans.apps.web.resource.UserResource;
  *
  */
 @RestController
+@RequestMapping(value = "/api")
 public class UserController {
 
 	private final static Logger logger = LoggerFactory.getLogger(UserController.class);

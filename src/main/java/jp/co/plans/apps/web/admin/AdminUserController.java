@@ -31,7 +31,7 @@ import jp.co.plans.apps.web.resource.BaseResource;
  *
  */
 @RestController
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "/api/admin")
 public class AdminUserController {
 
 	private final static Logger logger = LoggerFactory.getLogger(AdminUserController.class);
