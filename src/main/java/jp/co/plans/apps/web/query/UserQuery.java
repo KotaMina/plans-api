@@ -21,7 +21,6 @@ public class UserQuery implements Serializable {
 	@MaxLength(max = 100, params = "ユーザーID")
 	private String userId;
 
-	@SizeNotNull(params = "名前")
 	@MaxLength(max = 25, params = "名前")
 	private String name;
 

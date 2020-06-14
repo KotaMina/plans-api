@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +48,8 @@ public class UserController {
 	 * ログインを行う。
 	 * @return
 	 */
-	@RequestMapping(value = "/login", method = { RequestMethod.GET })
+	@RequestMapping(value = "/login", method = { RequestMethod.POST })
+	@CrossOrigin(origins = { "http://localhost:3000" })
 	public ResponseEntity<UserResource> login(HttpServletRequest request, @Valid @RequestBody UserQuery query,
 			BindingResult bindingResult) {
 
