@@ -17,7 +17,7 @@ public interface UserService {
 	 * @param critera
 	 * @return
 	 */
-	public void login(UserCriteria criteria);
+	public String login(UserCriteria criteria);
 
 	/**
 	 * ユーザー情報を参照する。

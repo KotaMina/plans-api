@@ -22,6 +22,9 @@ public class UserResource extends BaseResource implements Serializable {
 	/**セッション時間*/
 	private int intervalTime;
 
+	/**権限情報*/
+	private String authority;
+
 	/**アカウント情報*/
 	private AccountInfo accountInfo;
 

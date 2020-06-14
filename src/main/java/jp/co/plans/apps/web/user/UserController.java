@@ -69,10 +69,12 @@ public class UserController {
 		UserCriteria criteria = toMap(query);
 
 		//ログイン処理を行う。
-		userService.login(criteria);
+		String authority = userService.login(criteria);
 
 		//セッション時間を格納する。
 		resource.setIntervalTime(60 / 2);
+		//権限情報を取得する。
+		resource.setAuthority(authority);
 		//処理結果を格納する。
 		resource.setResult(CodeConstants.RESULT_OK);
 

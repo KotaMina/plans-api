@@ -44,9 +44,9 @@ public class UserServiceImpl implements UserService {
 	 * @return
 	 */
 	@Override
-	public void login(UserCriteria criteria) {
+	public String login(UserCriteria criteria) {
 		//ログインを行う。
-		loginModule.execute(criteria);
+		return loginModule.execute(criteria);
 	}
 
 	/**

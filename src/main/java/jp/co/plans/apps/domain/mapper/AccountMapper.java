@@ -21,7 +21,7 @@ public interface AccountMapper {
 	 * @param password
 	 * @return
 	 */
-	public Integer login(@Param("userId") String userId, @Param("password") String password);
+	public String login(@Param("userId") String userId, @Param("password") String password);
 
 	/**
 	 * ログイン失敗回数をカウントアップする。
