@@ -14,12 +14,16 @@ public class PlansCriteria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String plansName;
+	/**ユーザーID*/
+	private String userId;
 
-	private String plansDivision;
+	/**権限*/
+	private String authority;
 
-	private String time;
+	/**タイトル*/
+	private String title;
 
-	private String timeDivision;
+	/**カテゴリーId*/
+	private String categroyId;
 
 }

@@ -52,4 +52,12 @@ public interface UserService {
 	 * @param authority
 	 */
 	public void checkAuthority(String userId, String authority);
+
+	/**
+	 * リレーションIDを取得する。
+	 * 取得できない場合は、例外を発生する。
+	 * @param userId
+	 * @return
+	 */
+	public String getRelationId(String userId);
 }

@@ -11,4 +11,7 @@ public class BaseQuery implements Serializable {
 	/**ユーザーID*/
 	private String userId;
 
+	/**権限*/
+	private String authority;
+
 }

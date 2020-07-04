@@ -13,7 +13,10 @@ import lombok.Data;
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	/**ユーザーID*/
 	private String userId;
+	/**リレーションID*/
+	private String relationId;
 	/**名前*/
 	private String name;
 	/**和名*/

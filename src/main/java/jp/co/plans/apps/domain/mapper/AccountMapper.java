@@ -69,4 +69,11 @@ public interface AccountMapper {
 	 * @return
 	 */
 	public boolean isExist(@Param("userId") String userId, @Param("authority") String authority);
+
+	/**
+	 * リレーションIDを取得する。
+	 * @param userId
+	 * @return
+	 */
+	public String getRelationId(@Param("userId") String userId);
 }

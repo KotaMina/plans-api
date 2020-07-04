@@ -16,10 +16,16 @@ public class InsertPlansQuery extends BaseQuery implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String plansName;
+	/**プラン名*/
+	private String title;
 
-	private String plansDivision;
+	/**達成度*/
+	private int activity;
 
-	private String time;
+	/**カテゴリ*/
+	private String categoryId;
+
+	/**目的*/
+	private String purpose;
 
 }

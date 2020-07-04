@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.plans.apps.domain.mapper.PlansInfoMapper">
+	<insert id="inser" parameterType="jp.co.plans.apps.domain.model.Plans">
+		INSERT INTO plans
+			(
+			plans_id,
+			relation_id,
+			user_id,
+			title,
+			category_id,
+			activity,
+			public_flg,
+			created_user,
+			created_at,
+			updated_user,
+			updated_at
+			)
+		VALUES
+			(
+			uuid(),
+			#{relationId},
+			#{userId},
+			#{title},
+			#{categroyId},
+			0,
+			#{userId},
+			now(),
+			#{userId],
+			now()
+			)
+		;
+	</insert>
+</mapper>

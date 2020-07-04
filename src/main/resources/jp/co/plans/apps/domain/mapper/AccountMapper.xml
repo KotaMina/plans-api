@@ -53,6 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO account
 		VALUES (
 			#{userId},
+			uuid(),
 			#{name},
 			#{jpName},
 			#{password},
@@ -90,5 +91,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				AND authority = #{authority}
 			</where>
 		);
+	</select>
+
+	<select id="getRelationId" resultType="String">
+		SELECT
+			relation_id
+		FROM
+			account
+		<where>
+			user_id = #{userId}
+			AND white_flg = 0
+		</where>
 	</select>
 </mapper>

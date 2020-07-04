@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import jp.co.plans.apps.domain.criteria.UserCriteria;
 import jp.co.plans.apps.domain.service.user.UserService;
 import jp.co.plans.apps.domain.service.user.component.CheckAuthorityModule;
+import jp.co.plans.apps.domain.service.user.component.GetRelationIdModule;
 import jp.co.plans.apps.domain.service.user.component.InsertUserModule;
 import jp.co.plans.apps.domain.service.user.component.LoginUserModule;
 import jp.co.plans.apps.domain.service.user.component.ResetUserInfoModule;
@@ -37,6 +38,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private CheckAuthorityModule checkAuthorityModule;
+
+	@Autowired
+	private GetRelationIdModule getRelationIdModule;
 
 	/**
 	 * ログインする。
@@ -99,5 +103,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void checkAuthority(String userId, String authority) {
 		checkAuthorityModule.execute(userId, authority);
+	}
+
+	/**
+	 * リレーションIDを取得する。
+	 * 取得できない場合は、例外を発生する。
+	 * @param userId
+	 * @return
+	 */
+	@Override
+	public String getRelationId(String userId) {
+		return getRelationIdModule.execute(userId);
 	}
 }
